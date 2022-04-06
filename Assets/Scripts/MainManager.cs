@@ -3,28 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
+    public TextMeshProUGUI scoreText;
     public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
 
-    public Text ScoreText;
     public GameObject GameOverText;
-    
+
     private bool m_Started = false;
     private int m_Points;
-    
+
     private bool m_GameOver = false;
 
-    
+    private int highScore;
+
+    void Awake() {
+          scoreText.text = $"Name : {GameManager.Instance.nameInput} : Score = 0";
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
+
+        highScore = GameManager.Instance.highScore;
+
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
-        
+
         int[] pointCountArray = new [] {1,1,2,2,5,5};
         for (int i = 0; i < LineCount; ++i)
         {
@@ -65,12 +76,16 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        scoreText.text = $"Name : {GameManager.Instance.nameInput} Score : {m_Points}";
+        if (highScore <= m_Points) {
+            highScore = m_Points;
+        }
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        GameManager.Instance.highScore = highScore;
     }
 }
