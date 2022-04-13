@@ -1161,7 +1161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41cf63bfe372439383c15065387c07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highScoreText: {fileID: 2051005473}
   nameInput: 
+  highScore: 0
+  playerName: 
 --- !u!4 &1418665356
 Transform:
   m_ObjectHideFlags: 0
@@ -1613,8 +1616,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: 38.815}
-  m_SizeDelta: {x: 229.5098, y: 47.321}
+  m_AnchoredPosition: {x: 90.7621, y: 41.306}
+  m_SizeDelta: {x: 343.0339, y: 42.3389}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051005473
 MonoBehaviour:

@@ -21,8 +21,11 @@ public class MainManager : MonoBehaviour
 
     private int highScore;
 
+
+
     void Awake() {
-          scoreText.text = $"Name : {GameManager.Instance.nameInput} : Score = 0";
+          scoreText.text = $"High Score = {GameManager.Instance.highScore} : Name : {GameManager.Instance.nameInput} : Score = {0}";
+
     }
 
 
@@ -30,7 +33,7 @@ public class MainManager : MonoBehaviour
     void Start()
     {
 
-        highScore = GameManager.Instance.highScore;
+
 
 
         const float step = 0.6f;
@@ -76,16 +79,24 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        scoreText.text = $"Name : {GameManager.Instance.nameInput} Score : {m_Points}";
-        if (highScore <= m_Points) {
+        scoreText.text = $"Name : {GameManager.Instance.nameInput} : Score : {m_Points}";
+       // if (highScore <= m_Points) {
+         //   highScore = m_Points;
+        //}
+         if (m_Points > highScore) {
             highScore = m_Points;
+            GameManager.Instance.highScore = highScore;
+            GameManager.Instance.SaveScore();
         }
+
     }
 
     public void GameOver()
     {
+
+
         m_GameOver = true;
         GameOverText.SetActive(true);
-        GameManager.Instance.highScore = highScore;
+
     }
 }
